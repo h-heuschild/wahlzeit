@@ -122,6 +122,8 @@ public class Photo extends DataObject {
 	 */
 	protected String ending = "jpg";
 	
+	protected Location location;
+	
 	/**
 	 *
 	 */
@@ -418,4 +420,19 @@ public class Photo extends DataObject {
 		noVotesAtLastNotification = noVotes;
 		incWriteCount();
 	}
+	
+	/**
+	 * @methodtype setLocation
+	 */
+	public void setLocation(Coordinate coordinate) {
+		location.setCoordinates(coordinate);
+	}
+	
+	/**
+	 * @methodtype getLocation
+	 */
+	public Coordinate getLocation() {
+		return location.getCoordinates();
+	}
+	
 }
