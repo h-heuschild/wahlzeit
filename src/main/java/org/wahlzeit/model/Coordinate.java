@@ -1,9 +1,9 @@
 /*
  * Coordinate.java
  * 
- * Version 1.0
+ * adap-cw04
  * 
- * 29.10.2017 
+ * 05.11.2017 
  * 
  */
 
@@ -79,6 +79,14 @@ public class Coordinate {
 	}
 	
 	public boolean equals(Object object) {
+		if(object == null) {
+			return false;
+		}
+		
+		if(!(object instanceof Coordinate)) {
+			return false;
+		}
+		
 		return isEqual((Coordinate)object);
 	}
 }

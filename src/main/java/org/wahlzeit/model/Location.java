@@ -1,9 +1,9 @@
 /*
  * Location.java
  * 
- * Version 1.0
+ * adap-cw02
  * 
- * 29.10.2017 
+ * 05.11.2017 
  * 
  */
 
