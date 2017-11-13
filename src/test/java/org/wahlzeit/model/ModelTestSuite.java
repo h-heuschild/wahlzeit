@@ -24,7 +24,11 @@ import org.junit.runners.*;
 	PhotoFilterTest.class,
 	TagsTest.class,
 	UserStatusTest.class,
-	ValueTest.class
+	ValueTest.class,
+	DogPhotoTest.class,
+	DogPhotoManagerTest.class,
+	DogPhotoFactoryTest.class,
+	DogTest.class
 	
 })
 
