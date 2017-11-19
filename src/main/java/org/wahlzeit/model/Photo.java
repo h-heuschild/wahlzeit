@@ -424,14 +424,14 @@ public class Photo extends DataObject {
 	/**
 	 * @methodtype set
 	 */
-	public void setLocation(Coordinate coordinate) {
+	public void setLocation(CartesianCoordinate coordinate) {
 		location.setCoordinates(coordinate);
 	}
 	
 	/**
 	 * @methodtype get
 	 */
-	public Coordinate getLocation() {
+	public CartesianCoordinate getLocation() {
 		return location.getCoordinates();
 	}
 	

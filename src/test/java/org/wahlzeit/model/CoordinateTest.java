@@ -16,13 +16,13 @@ import org.junit.Test;
 
 public class CoordinateTest {
 	
-	private Coordinate firstcoord;
-	private Coordinate secondcoord;
+	private CartesianCoordinate firstcoord;
+	private CartesianCoordinate secondcoord;
 	
 	@Before
 	public void setUp() {
-		firstcoord = new Coordinate(2.0, 2.0, 1.0);
-		secondcoord = new Coordinate(2.0, 2.0, 2.0);
+		firstcoord = new CartesianCoordinate(2.0, 2.0, 1.0);
+		secondcoord = new CartesianCoordinate(2.0, 2.0, 2.0);
 	}
 	
 	@Test
@@ -48,8 +48,8 @@ public class CoordinateTest {
 		assertFalse(firstcoord.isEqual(null));
 		assertFalse(firstcoord.isEqual(secondcoord));
 		
-		firstcoord = new Coordinate(0.0, 0.0, 0.0);
-		secondcoord = new Coordinate(-0.0, -0.0, -0.0);
+		firstcoord = new CartesianCoordinate(0.0, 0.0, 0.0);
+		secondcoord = new CartesianCoordinate(-0.0, -0.0, -0.0);
 		assertTrue(firstcoord.isEqual(secondcoord));
 	}
 
