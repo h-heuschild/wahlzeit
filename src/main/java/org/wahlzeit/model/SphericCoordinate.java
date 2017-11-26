@@ -9,7 +9,7 @@
 
 package org.wahlzeit.model;
 
-public class SphericCoordinate implements Coordinate {
+public class SphericCoordinate extends AbstractCoordinate {
 	
 	private double latitude;
 	private double longitude;
@@ -149,11 +149,8 @@ public class SphericCoordinate implements Coordinate {
 
 	@Override
 	public boolean isEqual(Coordinate coordinate) {
-		if (null == coordinate) {
+		if(super.isEqual(coordinate) == false) {
 			return false;
-		}
-		if (this == coordinate) {
-			return true;
 		}
 		
 		SphericCoordinate sphericCoord = coordinate.asSphericCoordinate();
@@ -167,20 +164,6 @@ public class SphericCoordinate implements Coordinate {
 		return false;
 	}
 	
-	@Override
-	public boolean equals(Object obj) {
-		if(null == obj) {
-			return false;
-		}
-		if(this == obj) {
-			return true;
-		}
-		if(!(obj instanceof Coordinate)) {
-			return false;
-		}
-		
-		return isEqual((Coordinate)obj);
-	}
 	
 	@Override
 	public int hashCode() {

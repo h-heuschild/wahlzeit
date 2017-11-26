@@ -9,7 +9,7 @@
 
 package org.wahlzeit.model;
 
-public class CartesianCoordinate implements Coordinate {
+public class CartesianCoordinate extends AbstractCoordinate {
 
 	private double x;
 	private double y;
@@ -115,16 +115,13 @@ public class CartesianCoordinate implements Coordinate {
 	}
 	
 	@Override
-	public boolean isEqual(Coordinate second) {
+	public boolean isEqual(Coordinate coordinate) {
 		
-		if(second == null) {
+		if(super.isEqual(coordinate) == false) {
 			return false;
 		}
-		if(this == second) {
-			return true;
-		}
 		
-		CartesianCoordinate cartCoordinate = second.asCartesianCoordinate();
+		CartesianCoordinate cartCoordinate = coordinate.asCartesianCoordinate();
 		
 		if(Math.abs(this.x - cartCoordinate.getX()) <= Coordinate.EPSILON 
 				&& Math.abs(this.y - cartCoordinate.getY()) <= Coordinate.EPSILON 
@@ -133,18 +130,6 @@ public class CartesianCoordinate implements Coordinate {
 		}
 		
 		return false;
-	}
-	
-	public boolean equals(Object object) {
-		if(object == null) {
-			return false;
-		}
-		
-		if(!(object instanceof CartesianCoordinate)) {
-			return false;
-		}
-		
-		return isEqual((CartesianCoordinate)object);
 	}
 	
 	@Override
