@@ -76,9 +76,19 @@ public class CartesianCoordinate extends AbstractCoordinate {
 	}
 	
 	@Override
-	public double getDistance(Coordinate dist) {
-		
-		CartesianCoordinate cartCoordinate = dist.asCartesianCoordinate();
+	public double getDistance(Coordinate coordinate) {
+		return getCartesianDistance(coordinate);		
+	}
+
+	@Override
+	protected CartesianCoordinate doAsCartesianCoordinate() {		
+		return this;
+	}
+
+	@Override
+	protected double doGetCartesianDistance(Coordinate coordinate) {
+				
+		CartesianCoordinate cartCoordinate = coordinate.asCartesianCoordinate();
 		
 		double xDistance = cartCoordinate.getX() - this.getX();
 		double yDistance = cartCoordinate.getY() - this.getY();
@@ -92,17 +102,7 @@ public class CartesianCoordinate extends AbstractCoordinate {
 	}
 
 	@Override
-	public CartesianCoordinate asCartesianCoordinate() {		
-		return this;
-	}
-
-	@Override
-	public double getCartesianDistance(Coordinate coordinate) {
-		return this.getDistance(coordinate);
-	}
-
-	@Override
-	public SphericCoordinate asSphericCoordinate() {
+	protected SphericCoordinate doAsSphericCoordinate() {
 		double radius = Math.sqrt(Math.pow(this.x, 2) + Math.pow(this.y, 2) + Math.pow(this.z, 2));
 		double latitude = Math.toDegrees(Math.acos(this.z / radius));
 		double longitude = Math.toDegrees(Math.atan2(y, x));
@@ -110,8 +110,8 @@ public class CartesianCoordinate extends AbstractCoordinate {
 	}
 
 	@Override
-	public double getSphericDistance(Coordinate coordinate) {
-		return this.asSphericCoordinate().getDistance(coordinate);
+	protected double doGetSphericDistance(Coordinate coordinate) {
+		return this.asSphericCoordinate().getSphericDistance(coordinate);
 	}
 	
 	@Override

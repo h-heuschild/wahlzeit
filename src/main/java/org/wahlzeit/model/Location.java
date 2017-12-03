@@ -11,21 +11,21 @@ package org.wahlzeit.model;
 
 public class Location {
 
-	private CartesianCoordinate coordinate;
+	private Coordinate coordinate;
 	
 	public Location() {
 		this.coordinate = new CartesianCoordinate();		
 	}
 	
-	public Location(CartesianCoordinate coordinate){
+	public Location(Coordinate coordinate){
 		this.coordinate = coordinate;
 	}
 	
-	public CartesianCoordinate getCoordinates() {
+	public Coordinate getCoordinates() {
 		return coordinate;
 	}
 	
-	public void setCoordinates(CartesianCoordinate coordinate) {
+	public void setCoordinates(Coordinate coordinate) {
 		this.coordinate = coordinate;
 	}
 }

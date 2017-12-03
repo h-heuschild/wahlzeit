@@ -16,13 +16,13 @@ import org.junit.Test;
 
 public class LocationTest {
 	
-	private CartesianCoordinate coordinate;
+	private Coordinate coordinate;
 	private Location firstlocation;
 	private Location secondlocation;
 
 	@Before
 	public void setUp() {
-		coordinate = new CartesianCoordinate();
+		coordinate = new CartesianCoordinate();		
 		firstlocation = new Location();
 		secondlocation = new Location(coordinate);
 	}
@@ -31,7 +31,7 @@ public class LocationTest {
 	public void getterSetterTests() {
 		assertTrue(coordinate.equals(secondlocation.getCoordinates()));
 		
-		secondlocation.setCoordinates(new CartesianCoordinate());
+		secondlocation.setCoordinates(new SphericCoordinate());
 		assertFalse(coordinate.equals(secondlocation.getCoordinates()));
 	}
 	

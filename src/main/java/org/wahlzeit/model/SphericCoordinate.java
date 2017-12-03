@@ -84,7 +84,7 @@ public class SphericCoordinate extends AbstractCoordinate {
 	}
 
 	@Override
-	public CartesianCoordinate asCartesianCoordinate() {
+	protected CartesianCoordinate doAsCartesianCoordinate() {
 		double x = this.radius * Math.sin(Math.toRadians(this.longitude)) * Math.cos(Math.toRadians(this.latitude));
 		double y = this.radius * Math.sin(Math.toRadians(this.longitude)) * Math.sin(Math.toRadians(this.latitude));
 		double z = this.radius * Math.cos(Math.toRadians(this.longitude));	
@@ -92,26 +92,17 @@ public class SphericCoordinate extends AbstractCoordinate {
 	}
 
 	@Override
-	public double getCartesianDistance(Coordinate coordinate) {
-		return this.asCartesianCoordinate().getDistance(coordinate);
+	protected double doGetCartesianDistance(Coordinate coordinate){
+		return this.asCartesianCoordinate().getCartesianDistance(coordinate);
 	}
 
 	@Override
-	public SphericCoordinate asSphericCoordinate() {		
+	protected SphericCoordinate doAsSphericCoordinate(){		
 		return this;
 	}
 
 	@Override
-	public double getSphericDistance(Coordinate coordinate) {
-		return this.getDistance(coordinate);
-	}
-
-	@Override
-	public double getDistance(Coordinate coordinate) {
-		if (null == coordinate) {
-			throw new IllegalArgumentException("passed target parameter must not be null");
-		}
-		
+	protected double doGetSphericDistance(Coordinate coordinate) {
 		if (this.isEqual(coordinate)) {
 			return 0.0;
 		}
@@ -126,6 +117,12 @@ public class SphericCoordinate extends AbstractCoordinate {
 		
 		return Math.sqrt(sum1 + sum2 + sum3);
 	}
+
+	@Override
+	public double getDistance(Coordinate coordinate) {
+		return getSphericDistance(coordinate);	
+	}
+	
 	
 	private void checkLatitude(double latitude) {
 		if(latitude < SphericCoordinate.MIN_LATITUDE || 
