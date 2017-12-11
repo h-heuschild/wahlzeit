@@ -27,10 +27,14 @@ public class CartesianCoordinate extends AbstractCoordinate {
 	/*
 	 * @methodtype constructor
 	 */
-	public CartesianCoordinate(double x, double y, double z) {
+	public CartesianCoordinate(double x, double y, double z) throws IllegalArgumentException{
+		assertClassInvariants();
+		
 		this.x = x;
 		this.y = y;
 		this.z = z;
+		
+		assertClassInvariants();
 	}
 	
 	/*
@@ -57,27 +61,25 @@ public class CartesianCoordinate extends AbstractCoordinate {
 	/*
 	 * @methodtype set
 	 */
-	public void setX(double x) {
+	public void setX(double x) throws IllegalArgumentException{
+		assertIsDoubleValid(x);
 		this.x = x;
 	}
 	
 	/*
 	 * @methodtype set
 	 */
-	public void setY(double y) {
+	public void setY(double y) throws IllegalArgumentException{
+		assertIsDoubleValid(y);
 		this.y = y;
 	}
 	
 	/*
 	 * @methodtype set
 	 */
-	public void setZ(double z) {
+	public void setZ(double z) throws IllegalArgumentException{
+		assertIsDoubleValid(z);
 		this.z = z;
-	}
-	
-	@Override
-	public double getDistance(Coordinate coordinate) {
-		return getCartesianDistance(coordinate);		
 	}
 
 	@Override
@@ -112,6 +114,13 @@ public class CartesianCoordinate extends AbstractCoordinate {
 	@Override
 	protected double doGetSphericDistance(Coordinate coordinate) {
 		return this.asSphericCoordinate().getSphericDistance(coordinate);
+	}
+	
+	@Override
+	protected void assertClassInvariants() {
+		assertIsDoubleValid(this.getX());
+		assertIsDoubleValid(this.getY());
+		assertIsDoubleValid(this.getZ());
 	}
 	
 	@Override

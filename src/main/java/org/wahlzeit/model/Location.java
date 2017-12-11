@@ -18,6 +18,7 @@ public class Location {
 	}
 	
 	public Location(Coordinate coordinate){
+		assertNotNull(coordinate);
 		this.coordinate = coordinate;
 	}
 	
@@ -27,5 +28,11 @@ public class Location {
 	
 	public void setCoordinates(Coordinate coordinate) {
 		this.coordinate = coordinate;
+	}
+	
+	private void assertNotNull(Object object) {
+		if (object == null) {
+			throw new IllegalArgumentException("The object should not be null!");
+		}
 	}
 }

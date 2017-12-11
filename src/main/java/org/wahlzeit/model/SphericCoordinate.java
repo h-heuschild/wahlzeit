@@ -33,9 +33,13 @@ public class SphericCoordinate extends AbstractCoordinate {
 	 * @methodtype constructor
 	 */
 	public SphericCoordinate ( double latitude, double longitude, double radius) {
+		assertClassInvariants();
+		
 		this.setLatitude(latitude);
 		this.setLongitude(longitude);
 		this.setRadius(radius);
+		
+		assertClassInvariants();
 	}
 	
 	/*
@@ -62,7 +66,7 @@ public class SphericCoordinate extends AbstractCoordinate {
 	/*
 	 * @methodtype set
 	 */
-	public void setLatitude(double latitude) {
+	public void setLatitude(double latitude){
 		checkLatitude(latitude);
 		this.latitude = latitude;
 	}
@@ -70,7 +74,7 @@ public class SphericCoordinate extends AbstractCoordinate {
 	/*
 	 * @methodtype set
 	 */
-	public void setLongitude(double longitude) {
+	public void setLongitude(double longitude){
 		checkLongitude(longitude);
 		this.longitude = longitude;
 	}
@@ -78,7 +82,7 @@ public class SphericCoordinate extends AbstractCoordinate {
 	/*
 	 * @methodtype set
 	 */
-	public void setRadius(double radius) {
+	public void setRadius(double radius){
 		checkRadius(radius);
 		this.radius = radius;
 	}
@@ -119,29 +123,37 @@ public class SphericCoordinate extends AbstractCoordinate {
 	}
 
 	@Override
-	public double getDistance(Coordinate coordinate) {
+	public double getDistance(Coordinate coordinate) throws IllegalArgumentException{
+		assertNotNull(coordinate);
 		return getSphericDistance(coordinate);	
 	}
 	
 	
-	private void checkLatitude(double latitude) {
+	private void checkLatitude(double latitude) throws IllegalArgumentException{
 		if(latitude < SphericCoordinate.MIN_LATITUDE || 
 				latitude > SphericCoordinate.MAX_LATITUDE) {
 			throw new IllegalArgumentException("The latitude is not between -90 and 90 degrees!");
 		}
 	}
 	
-	private void checkLongitude(double longitude) {
+	private void checkLongitude(double longitude) throws IllegalArgumentException{
 		if(longitude < SphericCoordinate.MIN_LONGITUDE || 
 				longitude > SphericCoordinate.MAX_LONGITUDE) {
 			throw new IllegalArgumentException("The longitude is not between -180 and 180 degrees!");
 		}
 	}
 	
-	private void checkRadius(double radius) {
+	private void checkRadius(double radius) throws IllegalArgumentException{
 		if(radius < 0) {
 			throw new IllegalArgumentException("The radius is not greater zero!");
 		}
+	}
+	
+	@Override
+	protected void assertClassInvariants() {
+		checkLatitude(this.getLatitude());
+		checkLongitude(this.getLongitude());
+		checkRadius(this.getRadius());
 	}
 
 	@Override
